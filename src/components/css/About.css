@@ -1,0 +1,73 @@
+.about-section {
+    padding: 4rem 1rem;
+    min-height: 80vh;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-container {
+    max-width: 700px;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.about-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.about-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.about-link {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 2px solid var(--accent);
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-link:hover,
+.about-link:focus {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    outline: none;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Dark mode overrides */
+.dark-mode .about-section {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.dark-mode .about-description {
+    color: var(--text-secondary);
+}
+
+.dark-mode .about-link {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.dark-mode .about-link:hover,
+.dark-mode .about-link:focus {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+}

@@ -1,0 +1,136 @@
+.experiences-section {
+    padding: clamp(2rem, 6vw, 4rem) clamp(0.75rem, 3vw, 1rem);
+    min-height: 80vh;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.experiences-container {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.experiences-title {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* auto-fit: 1 column when narrow, 2+ when there's room for them */
+.experiences-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: clamp(1.5rem, 4vw, 2rem);
+    align-items: stretch;
+}
+
+.experience-card {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--shadow-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:focus-within {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 24px var(--accent);
+}
+
+/* hover lift only on devices that actually hover — avoids stuck states on touch */
+@media (hover: hover) {
+    .experience-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 24px var(--accent);
+    }
+}
+
+/* contain, not cover: logos shouldn't be cropped */
+.experience-logo {
+    display: block;
+    width: 100%;
+    height: clamp(80px, 20vw, 120px);
+    object-fit: contain;
+    padding: 1rem 1rem 0;
+    box-sizing: border-box;
+}
+
+.experience-content {
+    padding: clamp(1rem, 3vw, 1.5rem) clamp(1.2rem, 4vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.experience-role {
+    font-size: clamp(1.25rem, 4vw, 1.6rem);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    overflow-wrap: break-word;
+}
+
+.experience-company {
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: var(--accent);
+    overflow-wrap: break-word;
+}
+
+.experience-period {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin: 0 0 0.8rem;
+}
+
+.experience-description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+/* margin-top: auto pins the tag row to the card bottom so cards with shorter
+   descriptions still line up with their neighbours */
+.experience-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* Dark mode overrides */
+.dark-mode .experiences-section {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.dark-mode .experience-card {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .experience-card:hover,
+.dark-mode .experience-card:focus-within {
+    box-shadow: 0 6px 24px var(--accent);
+}
+
+/* Responsive: column count and type scale are handled intrinsically by
+   .experiences-list's auto-fit grid and clamp(), so no width breakpoints needed. */
+
+@media (prefers-reduced-motion: reduce) {
+    .experience-card {
+        transition: none;
+    }
+
+    .experience-card:hover,
+    .experience-card:focus-within {
+        transform: none;
+    }
+}

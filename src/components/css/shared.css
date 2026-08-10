@@ -1,0 +1,67 @@
+/* ================================
+   Shared card primitives
+   Used by both Projects and Experience. These class names are global, so
+   keep them defined here only — redefining them per-component means the
+   last-imported stylesheet silently wins.
+================================== */
+
+.tech-tag {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.5rem 1.2rem;
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #3730a3;
+    outline: none;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.btn-demo {
+    background-color: #10b981;
+}
+
+.btn-demo:hover,
+.btn-demo:focus {
+    background-color: #047857;
+}
+
+/* Dark mode */
+.dark-mode .btn:hover,
+.dark-mode .btn:focus {
+    background-color: #8b5cf6;
+}
+
+.dark-mode .btn-demo {
+    background-color: #22c55e;
+}
+
+.dark-mode .btn-demo:hover,
+.dark-mode .btn-demo:focus {
+    background-color: #15803d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none;
+    }
+}

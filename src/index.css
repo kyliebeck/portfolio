@@ -1,0 +1,106 @@
+/* ================================
+   Global Theme Variables
+================================== */
+
+/* Light Mode (Default) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --text-primary: #1a1a1a;
+  --text-accent: #4f46e5;
+  --nav-shadow: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --accent: #a78bfa;
+  --button-bg: #4f46e5;
+  --button-text: #ffffff;
+  --button-hover: #3730a3;
+}
+
+/* Dark Mode Overrides */
+.dark-mode {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e20;
+  --text-primary: #ffffff;
+  --text-accent: #a78bfa;
+  --nav-shadow: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --accent: #4f46e5;
+  --button-bg: #a78bfa;
+  --button-text: #121212;
+  --button-hover: #c4b5fd;
+}
+
+/* ================================
+   Base Styles
+================================== */
+
+html {
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--text-accent);
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--button-hover);
+  transform: scale(1.03);
+  outline: none;
+}
+
+/* ================================
+   Utility Classes
+================================== */
+
+.section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.text-muted {
+  color: #888;
+}
