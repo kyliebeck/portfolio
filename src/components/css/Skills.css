@@ -21,6 +21,55 @@
     }
 }
 
+/* --- Featured card ---
+   Spans every track of the auto-fit grid and carries an accent tint so it
+   reads as the headline of the section rather than one category among five. */
+.skill-card--featured {
+    grid-column: 1 / -1;
+    position: relative;
+    background:
+        linear-gradient(135deg, var(--accent-soft), transparent 62%),
+        var(--surface);
+    border-color: var(--accent-line);
+    overflow: hidden;
+}
+
+/* Gradient hairline along the top edge */
+.skill-card--featured::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), var(--accent-2), transparent);
+}
+
+.skill-card--featured .skill-card__icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-color: transparent;
+    color: var(--accent-ink);
+    box-shadow: 0 4px 16px -4px var(--glow);
+}
+
+:root[data-theme="light"] .skill-card--featured .skill-card__icon {
+    color: #fff;
+}
+
+.skill-card--featured .skill-card__title {
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+}
+
+.skill-card__blurb {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 68ch;
+    /* Pull up under the head, which carries its own bottom margin */
+    margin-top: -0.55rem;
+    margin-bottom: 1.35rem;
+}
+
 .skill-card__head {
     display: flex;
     align-items: center;
