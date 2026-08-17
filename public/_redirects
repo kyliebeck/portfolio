@@ -1,0 +1,4 @@
+# SPA fallback for Netlify. Vercel uses vercel.json instead; this file is
+# harmless there. Without it, deep links like /projects return a 404 because
+# only /index.html exists on disk.
+/*  /index.html  200

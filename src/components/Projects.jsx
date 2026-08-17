@@ -10,7 +10,7 @@ const projects = [
     technologies: ["JavaScript", "Express", "SQLite", "Railway"],
     github: "https://github.com/kyliebeck/tamagotchi.git",
     demo: "https://tamagotchi-production-b14d.up.railway.app/",
-    image: "/images/pixel-pet.png",
+    image: "/images/pixel-pet.webp",
   },
   {
     title: "Movie Collector",
@@ -20,7 +20,7 @@ const projects = [
     technologies: ["Django", "Python", "PostgreSQL", "HTML", "CSS"],
     github: "https://github.com/kyliebeck/django_movie_collection_app.git",
     demo: "https://moviecollector-app-73c025a9ab7e.herokuapp.com/",
-    image: "/images/movie-collector.png",
+    image: "/images/movie-collector.webp",
   },
   {
     title: "Bookshelf",
@@ -30,7 +30,7 @@ const projects = [
     technologies: ["JavaScript", "Mongoose", "MongoDB", "CSS"],
     github: "https://github.com/kyliebeck/BookshelfApp.git",
     demo: "https://bookshelf-project-app-532bd2f3bcab.herokuapp.com/",
-    image: "/images/bookshelf.png",
+    image: "/images/bookshelf.webp",
   },
   {
     title: "Sudoku",
@@ -40,7 +40,7 @@ const projects = [
     technologies: ["JavaScript", "CSS", "HTML"],
     github: "https://github.com/kyliebeck/Sudoku-Project.git",
     demo: "https://kyliebeck.github.io/Sudoku-Project/",
-    image: "/images/sudoku.png",
+    image: "/images/sudoku.webp",
   },
 ];
 
