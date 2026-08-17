@@ -1,106 +1,426 @@
-/* ================================
-   Global Theme Variables
-================================== */
+/* ==========================================================================
+   Design tokens
+   Dark is the default theme; light is an explicit opt-in via
+   :root[data-theme="light"]. Every color a component uses must come from a
+   token defined in BOTH blocks, or it will break in one of the two themes.
+   ========================================================================== */
 
-/* Light Mode (Default) */
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f7;
-  --text-primary: #1a1a1a;
-  --text-accent: #4f46e5;
-  --nav-shadow: rgba(0, 0, 0, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --accent: #a78bfa;
-  --button-bg: #4f46e5;
-  --button-text: #ffffff;
-  --button-hover: #3730a3;
+  color-scheme: dark;
+
+  /* Surfaces — bg is the page, surface/surface-2 step up as things elevate */
+  --bg: #07080c;
+  --bg-soft: #0b0d13;
+  --surface: #11141c;
+  --surface-2: #171b25;
+  --surface-3: #1e2330;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.17);
+
+  /* Text — three steps of emphasis, never more */
+  --text: #eef1f7;
+  --text-dim: #a8b0c2;
+  --text-faint: #6f778a;
+
+  /* Accent */
+  --accent: #2dd4ff;
+  --accent-2: #a78bfa;
+  --accent-ink: #04121a;
+  /* text that sits ON the accent */
+  --accent-soft: rgba(45, 212, 255, 0.12);
+  --accent-line: rgba(45, 212, 255, 0.3);
+  --glow: rgba(45, 212, 255, 0.28);
+  --ring: rgba(45, 212, 255, 0.55);
+
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.13);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 64px -16px rgba(0, 0, 0, 0.75);
+
+  /* Ambient gradient wash behind the page */
+  --wash-1: rgba(45, 212, 255, 0.13);
+  --wash-2: rgba(167, 139, 250, 0.12);
+
+  /* Type */
+  --font-display: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --step-hero: clamp(2.75rem, 8vw, 5.25rem);
+  --step-h1: clamp(2.1rem, 5.5vw, 3.4rem);
+  --step-h2: clamp(1.3rem, 2.6vw, 1.65rem);
+  --step-lead: clamp(1.05rem, 1.9vw, 1.3rem);
+  --step-body: 1rem;
+  --step-sm: 0.875rem;
+  --step-xs: 0.78rem;
+
+  /* Rhythm */
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --section-y: clamp(5rem, 12vh, 9rem);
+  --maxw: 1140px;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --nav-h: 68px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Dark Mode Overrides */
-.dark-mode {
-  --bg-primary: #121212;
-  --bg-secondary: #1e1e20;
-  --text-primary: #ffffff;
-  --text-accent: #a78bfa;
-  --nav-shadow: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(255, 255, 255, 0.1);
-  --accent: #4f46e5;
-  --button-bg: #a78bfa;
-  --button-text: #121212;
-  --button-hover: #c4b5fd;
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #fafafc;
+  --bg-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f4f9;
+  --surface-3: #e9ebf3;
+
+  --border: rgba(10, 14, 30, 0.11);
+  --border-strong: rgba(10, 14, 30, 0.2);
+
+  --text: #0c1020;
+  --text-dim: #4b536a;
+  --text-faint: #7d8497;
+
+  /* Darkened so accent-on-white clears contrast requirements */
+  --accent: #0679a1;
+  --accent-2: #6d28d9;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(6, 121, 161, 0.1);
+  --accent-line: rgba(6, 121, 161, 0.28);
+  --glow: rgba(6, 121, 161, 0.18);
+  --ring: rgba(6, 121, 161, 0.5);
+
+  --success: #047857;
+  --success-soft: rgba(4, 120, 87, 0.1);
+
+  --shadow-sm: 0 1px 2px rgba(12, 16, 32, 0.06);
+  --shadow-md: 0 4px 12px rgba(12, 16, 32, 0.07), 0 12px 32px -8px rgba(12, 16, 32, 0.1);
+  --shadow-lg: 0 24px 64px -16px rgba(12, 16, 32, 0.18);
+
+  --wash-1: rgba(6, 121, 161, 0.09);
+  --wash-2: rgba(109, 40, 217, 0.08);
 }
 
-/* ================================
-   Base Styles
-================================== */
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
-  min-height: 100%;
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
+  scroll-behavior: smooth;
+  /* Anchor targets must clear the sticky navbar */
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  background-color: var(--bg);
 }
 
 body {
   margin: 0;
-  padding: 0;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans);
+  font-size: var(--step-body);
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
 
-#root {
-  min-height: 100vh;
+/* Ambient gradient wash — fixed so it stays put while the page scrolls */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 60vh at 12% -5%, var(--wash-1), transparent 65%),
+    radial-gradient(55vw 55vh at 92% 8%, var(--wash-2), transparent 60%),
+    radial-gradient(70vw 50vh at 50% 105%, var(--wash-1), transparent 70%);
+  transition: opacity 0.4s var(--ease);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
 }
 
 a {
-  color: var(--text-primary);
+  color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-a:hover,
-a:focus {
-  color: var(--text-accent);
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 button {
-  background-color: var(--button-bg);
-  color: var(--button-text);
+  font: inherit;
+  color: inherit;
+  background: none;
   border: none;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover,
-button:focus {
-  background-color: var(--button-hover);
-  transform: scale(1.03);
-  outline: none;
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
-/* ================================
-   Utility Classes
-================================== */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Visible to screen readers only — used to disambiguate repeated link text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard users get a way past the nav */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  transform: translate(-50%, -200%);
+  z-index: 2000;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  transition: transform 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
 
 .section {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-block: var(--section-y);
+  padding-inline: var(--gutter);
+  scroll-margin-top: var(--nav-h);
 }
 
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
+.section__inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  width: 100%;
 }
 
-.text-muted {
-  color: #888;
+/* Hairline between sections, faded at the edges */
+.section--ruled {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent) 1;
+}
+
+/* Small monospace label that sits above every section heading */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--step-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--accent-line);
+}
+
+.section-title {
+  font-size: var(--step-h1);
+  margin-bottom: 0.85rem;
+}
+
+.section-intro {
+  font-size: var(--step-lead);
+  color: var(--text-dim);
+  max-width: 56ch;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.section-head {
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.section-head .section-intro {
+  margin-bottom: 0;
+}
+
+/* Text that carries the accent gradient */
+.gradient-text {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 46px;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    background-color 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.btn svg {
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 6px 24px -6px var(--glow);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+@media (hover: hover) {
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -8px var(--glow);
+  }
+
+  .btn--ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+
+  .btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  .btn--up:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* ==========================================================================
+   Chips / tags
+   ========================================================================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--step-xs);
+  font-weight: 500;
+  line-height: 1.5;
+  user-select: none;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+/* ==========================================================================
+   Scroll reveal — elements start hidden and are un-hidden by
+   useRevealOnScroll(). If JS never runs, the .no-js guard keeps content visible.
+   ========================================================================== */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }

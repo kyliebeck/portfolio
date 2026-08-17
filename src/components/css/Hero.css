@@ -1,0 +1,309 @@
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - var(--nav-h));
+    padding: clamp(3rem, 9vh, 6rem) var(--gutter) clamp(5rem, 10vh, 7rem);
+    overflow: hidden;
+}
+
+.hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 4.5rem);
+}
+
+/* --- Copy --- */
+
+.hero__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.95rem 0.4rem 0.7rem;
+    margin-bottom: 1.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--success-soft);
+    border: 1px solid color-mix(in srgb, var(--success) 32%, transparent);
+    color: var(--success);
+    font-family: var(--font-mono);
+    font-size: var(--step-xs);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.hero__pulse {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+.hero__pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--success);
+    animation: hero-pulse 2.2s var(--ease) infinite;
+}
+
+@keyframes hero-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    70%,
+    100% {
+        transform: scale(3.2);
+        opacity: 0;
+    }
+}
+
+.hero__title {
+    font-size: var(--step-hero);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-bottom: 1.5rem;
+}
+
+.hero__lead {
+    font-size: var(--step-lead);
+    color: var(--text-dim);
+    max-width: 48ch;
+    margin-bottom: 2.25rem;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+}
+
+.hero__socials {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.hero__socials a {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+        transform 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+@media (hover: hover) {
+    .hero__socials a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        transform: translateY(-3px);
+    }
+}
+
+/* --- Code card --- */
+
+/* The wrapper owns the scroll-reveal transform; the card owns the tilt. Keeping
+   them on separate elements stops the two transforms from overwriting each other. */
+.hero__card-wrap {
+    min-width: 0;
+}
+
+.hero__card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    /* A slight tilt keeps the card from reading as a flat screenshot */
+    transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
+    transition: transform 0.5s var(--ease);
+}
+
+@media (hover: hover) {
+    .hero__card:hover {
+        transform: perspective(1400px) rotateY(-3deg) rotateX(1deg) translateY(-4px);
+    }
+}
+
+/* Gradient hairline along the top edge */
+.hero__card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), var(--accent-2), transparent);
+}
+
+.hero__card-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+}
+
+.hero__card-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-strong);
+}
+
+.hero__card-bar span:first-child {
+    background: #ff5f57;
+}
+
+.hero__card-bar span:nth-child(2) {
+    background: #febc2e;
+}
+
+.hero__card-bar span:nth-child(3) {
+    background: #28c840;
+}
+
+.hero__card-bar p {
+    margin-left: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: var(--step-xs);
+    color: var(--text-faint);
+}
+
+.hero__code {
+    margin: 0;
+    padding: 1.4rem 1.5rem 1.6rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.74rem, 1.05vw, 0.85rem);
+    line-height: 1.85;
+    color: var(--text-dim);
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.c-key {
+    color: var(--accent-2);
+}
+
+.c-var {
+    color: var(--text);
+}
+
+.c-str {
+    color: var(--accent);
+}
+
+.c-fn {
+    color: #fbbf24;
+}
+
+.c-bool {
+    color: var(--success);
+}
+
+:root[data-theme="light"] .c-fn {
+    color: #b45309;
+}
+
+/* --- Scroll cue --- */
+
+.hero__scroll {
+    position: absolute;
+    bottom: clamp(1.25rem, 4vh, 2.25rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    transition: color 0.25s var(--ease);
+}
+
+.hero__scroll-line {
+    width: 1px;
+    height: 42px;
+    background: linear-gradient(to bottom, var(--border-strong), transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__scroll-line::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 14px;
+    background: var(--accent);
+    animation: scroll-cue 2.1s var(--ease) infinite;
+}
+
+@keyframes scroll-cue {
+    0% {
+        transform: translateY(-16px);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(44px);
+        opacity: 0;
+    }
+}
+
+@media (hover: hover) {
+    .hero__scroll:hover {
+        color: var(--accent);
+    }
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 940px) {
+    .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .hero__card-wrap {
+        max-width: 520px;
+    }
+
+    .hero__card,
+    .hero__card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .hero__scroll {
+        display: none;
+    }
+
+    .hero__title br {
+        display: none;
+    }
+}

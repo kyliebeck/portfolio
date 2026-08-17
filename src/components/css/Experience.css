@@ -1,0 +1,118 @@
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    padding-left: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* The rail. Fades out at the bottom so the timeline reads as open-ended
+   rather than stopping dead under the last card. */
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom,
+            var(--accent) 0%,
+            var(--border) 22%,
+            var(--border) 72%,
+            transparent 100%);
+}
+
+.timeline__item {
+    position: relative;
+}
+
+.timeline__dot {
+    position: absolute;
+    top: 1.65rem;
+    left: calc(clamp(1.5rem, 3vw, 2.25rem) * -1 - 5px);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--surface-3);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--border);
+    transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.timeline__item.is-current .timeline__dot {
+    background: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent), 0 0 16px var(--glow);
+}
+
+.timeline__card {
+    padding: clamp(1.35rem, 2.6vw, 1.85rem);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease),
+        box-shadow 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+    .timeline__card:hover {
+        transform: translateX(4px);
+        border-color: var(--border-strong);
+        box-shadow: var(--shadow-md);
+    }
+
+    .timeline__item:hover .timeline__dot {
+        background: var(--accent);
+    }
+}
+
+.timeline__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.6rem;
+}
+
+.timeline__period {
+    font-family: var(--font-mono);
+    font-size: var(--step-xs);
+    letter-spacing: 0.04em;
+    color: var(--text-faint);
+}
+
+.timeline__badge {
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--success-soft);
+    border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+    color: var(--success);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.timeline__role {
+    font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+    margin-bottom: 0.2rem;
+}
+
+.timeline__company {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+}
+
+.timeline__desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 72ch;
+}
+
+.timeline__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+}
