@@ -10,8 +10,6 @@ const projects = [
     build:
       "React + TypeScript on Vite, with React Router for the five main pages. Supabase handles auth and stores collections and read-book records — Row Level Security is what keeps one user's private shelves out of another user's hands. Book data itself is never stored: only volume IDs get saved to a shelf, and everything else is fetched live. Deployed as a static site on Railway.",
     technologies: ["React", "TypeScript", "Vite", "React Router", "Supabase Auth", "Google Books API", "Open Library", "Railway"],
-    // ⚠️ This repo is currently private — the link 404s for anyone but Kylie.
-    // Make it public on GitHub, or clear this string to hide the Code link.
     github: "https://github.com/kyliebeck/my-book-tracker",
     demo: "https://nightstand-production.up.railway.app/",
     image: "/images/nightstand.webp",
