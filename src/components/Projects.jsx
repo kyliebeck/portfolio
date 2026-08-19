@@ -2,8 +2,22 @@ import "./css/Projects.css";
 
 const projects = [
   {
-    title: "Pixel Pet",
+    title: "Nightstand",
     featured: true,
+    short: "A personal book tracker — search, shelve, and share what you're reading.",
+    description:
+      "Search for books by title or author against the Google Books API, with Open Library as a secondary source. Organize what you find into named shelves, each one public or private, and open any book for its full detail — authors, cover, description, page count, publisher, ratings — then mark it read. A community page browses the shelves other readers have chosen to publish.",
+    build:
+      "React + TypeScript on Vite, with React Router for the five main pages. Supabase handles auth and stores collections and read-book records — Row Level Security is what keeps one user's private shelves out of another user's hands. Book data itself is never stored: only volume IDs get saved to a shelf, and everything else is fetched live. Deployed as a static site on Railway.",
+    technologies: ["React", "TypeScript", "Vite", "React Router", "Supabase Auth", "Google Books API", "Open Library", "Railway"],
+    // ⚠️ This repo is currently private — the link 404s for anyone but Kylie.
+    // Make it public on GitHub, or clear this string to hide the Code link.
+    github: "https://github.com/kyliebeck/my-book-tracker",
+    demo: "https://nightstand-production.up.railway.app/",
+    image: "/images/nightstand.webp",
+  },
+  {
+    title: "Pixel Pet",
     short: "A virtual pet game where users feed, play with, and care for animated pets.",
     description:
       "A modern Tamagotchi where a pet ages through seven life stages, decays in real time if neglected, and can be fed, cleaned, played with, and eventually mourned in a graveyard. It features pets, achievements, an item shop, friend lists, a mini-game, and leaderboards.",
@@ -21,16 +35,6 @@ const projects = [
     github: "https://github.com/kyliebeck/django_movie_collection_app.git",
     demo: "https://moviecollector-app-73c025a9ab7e.herokuapp.com/",
     image: "/images/movie-collector.webp",
-  },
-  {
-    title: "Bookshelf",
-    short: "Organize and share your book collections with the community.",
-    description:
-      "Collect and store books you've read or plan to read, organize them into custom shelves, and publish those shelves to a shared community library page.",
-    technologies: ["JavaScript", "Mongoose", "MongoDB", "CSS"],
-    github: "https://github.com/kyliebeck/BookshelfApp.git",
-    demo: "https://bookshelf-project-app-532bd2f3bcab.herokuapp.com/",
-    image: "/images/bookshelf.webp",
   },
   {
     title: "Sudoku",
@@ -58,7 +62,7 @@ const ArrowIcon = () => (
 );
 
 function ProjectCard({ project, index }) {
-  const { title, featured, short, description, technologies, github, demo, image } = project;
+  const { title, featured, short, description, build, technologies, github, demo, image } = project;
 
   return (
     <article
@@ -67,7 +71,15 @@ function ProjectCard({ project, index }) {
       style={{ "--reveal-delay": `${index * 80}ms` }}
     >
       <div className="project__media">
-        <img src={image} alt={`${title} screenshot`} loading="lazy" />
+        {image ? (
+          <img src={image} alt={`${title} screenshot`} loading="lazy" />
+        ) : (
+          // Placeholder until a screenshot exists — an empty <img> would render
+          // as a broken-image icon and read as a bug rather than a gap.
+          <div className="project__media-fallback" aria-hidden="true">
+            <span>{title}</span>
+          </div>
+        )}
         <span className="project__index" aria-hidden="true">
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -78,6 +90,13 @@ function ProjectCard({ project, index }) {
         <p className="project__short">{short}</p>
         <p className="project__desc">{description}</p>
 
+        {build && (
+          <div className="project__build">
+            <p className="project__build-label">How it&rsquo;s built</p>
+            <p className="project__build-text">{build}</p>
+          </div>
+        )}
+
         <ul className="project__tech">
           {technologies.map((tech) => (
             <li key={tech} className="tag">{tech}</li>
@@ -85,16 +104,20 @@ function ProjectCard({ project, index }) {
         </ul>
 
         <div className="project__links">
-          <a className="project__link" href={demo} target="_blank" rel="noopener noreferrer">
-            <ArrowIcon />
-            Live demo
-            <span className="sr-only"> — {title}</span>
-          </a>
-          <a className="project__link project__link--muted" href={github} target="_blank" rel="noopener noreferrer">
-            <GithubIcon />
-            Code
-            <span className="sr-only"> — {title}</span>
-          </a>
+          {demo && (
+            <a className="project__link" href={demo} target="_blank" rel="noopener noreferrer">
+              <ArrowIcon />
+              Live demo
+              <span className="sr-only"> — {title}</span>
+            </a>
+          )}
+          {github && (
+            <a className="project__link project__link--muted" href={github} target="_blank" rel="noopener noreferrer">
+              <GithubIcon />
+              Code
+              <span className="sr-only"> — {title}</span>
+            </a>
+          )}
         </div>
       </div>
     </article>

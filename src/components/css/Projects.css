@@ -8,6 +8,8 @@
 
 .project {
     position: relative;
+    /* A third of the 6 tracks — three per row, which exactly fits the three
+       non-featured projects and leaves no orphan in the last row. */
     grid-column: span 2;
     display: flex;
     flex-direction: column;
@@ -91,6 +93,48 @@
 .project--featured .project__media img {
     aspect-ratio: auto;
     min-height: 100%;
+    /* The column is taller than the screenshot is wide, so cover has to crop
+       horizontally. Pulling the image left takes the crop off the right edge,
+       keeping the app's headline and nav intact, and the negative offset also
+       hides the page gutter baked into the left of the screenshot.
+       Nudge --shot-x further negative to slide it further left. */
+    object-position: var(--shot-x, -34px) top;
+}
+
+/* Stands in for a missing screenshot. Deliberately reads as a designed panel
+   rather than a hole, so the card still looks finished. */
+.project__media-fallback {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 10;
+    padding: 1.5rem;
+    background:
+        radial-gradient(80% 90% at 30% 10%, var(--accent-soft), transparent 70%),
+        var(--surface-2);
+    border-bottom: 1px solid var(--border);
+}
+
+/* In the featured row layout the media column stretches to the card's height,
+   so the fixed aspect ratio has to give way. */
+.project--featured .project__media-fallback {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 300px;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+}
+
+.project__media-fallback span {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-align: center;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.85;
 }
 
 .project__index {
@@ -146,9 +190,28 @@
     margin-bottom: 1.25rem;
 }
 
-/* Only the featured card has room for the long description */
-.project:not(.project--featured) .project__desc {
-    display: none;
+/* Technical notes. Set apart from the product description by an accent rule,
+   so a reader skimming for engineering substance can find it fast. */
+.project__build {
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-line);
+    margin-bottom: 1.25rem;
+}
+
+.project__build-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+}
+
+.project__build-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-dim);
 }
 
 .project__tech {
@@ -208,15 +271,19 @@
         aspect-ratio: 16 / 9;
         min-height: 0;
     }
+
+    /* Stacked again — the separator goes back to the bottom edge */
+    .project--featured .project__media-fallback {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        min-height: 0;
+        border-bottom: 1px solid var(--border);
+        border-right: none;
+    }
 }
 
 @media (max-width: 620px) {
     .project {
         grid-column: span 6;
-    }
-
-    /* With one card per row there's room for the full description everywhere */
-    .project:not(.project--featured) .project__desc {
-        display: block;
     }
 }
