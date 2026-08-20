@@ -42,31 +42,4 @@ src/
     css/                 one stylesheet per component
 ```
 
-A few decisions worth calling out:
 
-**Theming.** Every color is a custom property defined in both the `:root` and
-`:root[data-theme="light"]` blocks, so a component never hardcodes a color and
-neither theme can drift. An inline script in `index.html` applies the stored
-theme before first paint, which avoids the light-mode flash on load.
-
-**Scroll reveals.** A single `IntersectionObserver` in `useRevealOnScroll`
-watches every `[data-reveal]` element rather than one observer per component,
-and unobserves each element once revealed. Everything collapses to no-motion
-under `prefers-reduced-motion`.
-
-**Scroll-spy.** The navbar highlights a section using an observer with an
-asymmetric `rootMargin` that collapses the viewport to a thin band at ~45%
-height, so exactly one section is ever active.
-
-**Routing.** The site is one scrolling page. The old `/projects`, `/skills`,
-`/experience`, and `/contact` routes redirect to the matching anchor so
-previously shared links still resolve.
-
-## Deploying
-
-The SPA fallback is configured for both hosts — `vercel.json` for Vercel and
-`public/_redirects` for Netlify. Without one of these, deep links 404.
-
-After deploying, replace `https://example.com` in `index.html` with the real
-URL (4 occurrences). Open Graph requires absolute URLs, so link previews stay
-blank until this is set.
