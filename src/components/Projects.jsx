@@ -64,7 +64,7 @@ function ProjectCard({ project, index }) {
 
   return (
     <article
-      className={`project ${featured ? "project--featured" : ""}`}
+      className={`project ${featured ? "project--featured" : ""} ${title === "Pixel Pet" ? "project--pixel-pet" : ""}`}
       data-reveal
       style={{ "--reveal-delay": `${index * 80}ms` }}
     >
