@@ -13,26 +13,35 @@ const projects = [
     github: "https://github.com/kyliebeck/my-book-tracker",
     demo: "https://nightstand-production.up.railway.app/",
     image: "/images/nightstand.webp",
+    imageSize: [1209, 1159],
   },
   {
-    title: "Pixel Pet",
-    short: "A virtual pet game where users feed, play with, and care for animated pets.",
+    title: "Pixby",
+    // The screenshot is a full page shot; the card crops in on the pet itself.
+    zoom: true,
+    short: "A virtual pet web app.",
     description:
-      "A modern Tamagotchi where a pet ages through seven life stages, decays in real time if neglected, and can be fed, cleaned, played with, and eventually mourned in a graveyard. It features pets, achievements, an item shop, friend lists, a mini-game, and leaderboards.",
-    technologies: ["JavaScript", "Express", "SQLite", "Railway"],
-    github: "https://github.com/kyliebeck/tamagotchi.git",
-    demo: "https://tamagotchi-production-b14d.up.railway.app/",
-    image: "/images/pixel-pet.webp",
+      "Adopt a pixel pet, name it, and keep it alive by feeding, playing, cleaning, putting it to sleep, and giving it medicine. Pets age through seven life stages — egg to baby, child, teen, young adult, adult, elder — with stage-up dialogue, stats that decay over time, and a graveyard for the ones that don't make it. Around that core loop sits a bubble-popping minigame with a leaderboard, daily challenges, achievements with claimable rewards, a shop trading pixel points for consumables like super food and revival tokens, and friends with requests and a global leaderboard.",
+    build:
+      "The front end is vanilla JavaScript with no framework and no build step — about twelve plain scripts loaded straight from index.html, one hand-written 2.3k-line stylesheet, pets drawn as inline SVG, and sound through the Web Audio API. Behind it, Node 20 and Express serve a REST API of roughly 29 routes alongside the static files. Passwords are hashed with bcryptjs and sessions run on JWT bearer tokens. Data lives in SQLite through better-sqlite3, with the schema created on boot and evolved by incremental ALTER TABLE migrations. Deployed on Railway via Nixpacks.",
+    technologies: ["JavaScript", "Node.js", "Express", "SQLite", "JWT", "Web Audio API", "Railway"],
+    github: "https://github.com/kyliebeck/pixby.git",
+    demo: "https://pixby-production-0fc7.up.railway.app/",
+    image: "/images/pixby.webp",
+    imageSize: [1200, 710],
   },
   {
-    title: "Movie Collector",
-    short: "A Django web app for browsing, reviewing, and managing movies.",
+    title: "Marquee",
+    short: "A Django movie-collection web app.",
     description:
-      "Browse movies and reviews publicly; logged-in users can add, edit, and delete their own. Built on Django's authentication system with signup, login, and logout, and migrated from SQLite to PostgreSQL for deployment.",
-    technologies: ["Django", "Python", "PostgreSQL", "HTML", "CSS"],
-    github: "https://github.com/kyliebeck/django_movie_collection_app.git",
-    demo: "https://moviecollector-app-73c025a9ab7e.herokuapp.com/",
-    image: "/images/movie-collector.webp",
+      "Browse a shared film catalog sourced from TMDB — popular films, title search, and genre-based discovery — then save films, write 1–5 star reviews, and organize titles into personal watchlists with per-entry watched tracking. Movies live in one shared catalog keyed by TMDB id, so everyone who saves the same film points at the same row and its reviews aggregate across users. Browsing and reading reviews is public; adding movies, reviews, and watchlists requires an account.",
+    build:
+      "Python 3.11 and Django 5.2 — a mix of class-based and function views over the Django ORM — backed by PostgreSQL through psycopg2. The front end is Django templates with hand-written CSS organized per feature, and auth is Django's built-in session system for signup, login, and logout. TMDB is wrapped in a Django-free HTTP client with model mapping isolated in a separate catalog module, and posters are served straight from TMDB's image CDN. Config comes from python-dotenv, boto3 is on hand for S3 poster uploads, and custom management commands handle genre syncing, TMDB id backfills, and catalog wipes.",
+    technologies: ["Django", "Python", "PostgreSQL", "TMDB API", "Django Templates", "CSS"],
+    github: "https://github.com/kyliebeck/marquee.git",
+    demo: "https://marquee-production-e065.up.railway.app/",
+    image: "/images/marquee.webp",
+    imageSize: [1200, 867],
   },
   {
     title: "Sudoku",
@@ -43,6 +52,7 @@ const projects = [
     github: "https://github.com/kyliebeck/Sudoku-Project.git",
     demo: "https://kyliebeck.github.io/Sudoku-Project/",
     image: "/images/sudoku.webp",
+    imageSize: [900, 766],
   },
 ];
 
@@ -60,17 +70,26 @@ const ArrowIcon = () => (
 );
 
 function ProjectCard({ project, index }) {
-  const { title, featured, short, description, build, technologies, github, demo, image } = project;
+  const { title, featured, zoom, short, description, build, technologies, github, demo, image, imageSize } = project;
 
   return (
     <article
-      className={`project ${featured ? "project--featured" : ""} ${title === "Pixel Pet" ? "project--pixel-pet" : ""}`}
+      className={`project ${featured ? "project--featured" : ""} ${zoom ? "project--zoom" : ""}`}
       data-reveal
       style={{ "--reveal-delay": `${index * 80}ms` }}
     >
       <div className="project__media">
         {image ? (
-          <img src={image} alt={`${title} screenshot`} loading="lazy" />
+          // Intrinsic dimensions let the browser reserve the slot before the
+          // file arrives, so the cards below don't jump as screenshots load.
+          <img
+            src={image}
+            alt={`${title} screenshot`}
+            loading="lazy"
+            decoding="async"
+            width={imageSize?.[0]}
+            height={imageSize?.[1]}
+          />
         ) : (
           // Placeholder until a screenshot exists — an empty <img> would render
           // as a broken-image icon and read as a bug rather than a gap.
