@@ -31,18 +31,6 @@ const icons = {
 
 const categories = [
     {
-        title: "AI & LLM Development",
-        icon: "sparkle",
-        featured: true,
-        blurb:
-            "I build with AI in the loop — both as a daily part of how I write and review code, and as a capability I integrate directly into the applications I ship.",
-        skills: [
-            "Claude Code", "GitHub Copilot", "Prompt engineering",
-            "Anthropic API", "OpenAI API", "Tool use / function calling",
-            "Streaming responses", "Structured output",
-        ],
-    },
-    {
         title: "Languages & Frameworks",
         icon: "code",
         skills: [
@@ -65,6 +53,14 @@ const categories = [
         icon: "tools",
         skills: ["Git", "GitHub", "Vite", "REST APIs"],
     },
+    {
+        title: "AI Integration",
+        icon: "sparkle",
+        skills: [
+            "Anthropic API", "OpenAI API", "Tool use / function calling",
+            "Streaming responses", "Structured output",
+        ],
+    },
 ];
 
 export default function Skills() {
@@ -72,19 +68,14 @@ export default function Skills() {
         <section className="section section--ruled" id="skills">
             <div className="section__inner">
                 <header className="section-head" data-reveal>
-                    <p className="eyebrow">Toolkit</p>
                     <h2 className="section-title">What I work with</h2>
-                    <p className="section-intro">
-                        The stack I reach for day to day, from the database up through the
-                        interface and out to production.
-                    </p>
                 </header>
 
                 <div className="skills__grid">
                     {categories.map((category, index) => (
                         <article
                             key={category.title}
-                            className={`skill-card ${category.featured ? "skill-card--featured" : ""}`}
+                            className="skill-card"
                             data-reveal
                             style={{ "--reveal-delay": `${index * 80}ms` }}
                         >
@@ -99,11 +90,9 @@ export default function Skills() {
                                 <h3 className="skill-card__title">{category.title}</h3>
                             </div>
 
-                            {category.blurb && <p className="skill-card__blurb">{category.blurb}</p>}
-
                             <ul className="skill-card__list">
                                 {category.skills.map((skill) => (
-                                    <li key={skill} className="tag skill-chip">{skill}</li>
+                                    <li key={skill} className="tag">{skill}</li>
                                 ))}
                             </ul>
                         </article>

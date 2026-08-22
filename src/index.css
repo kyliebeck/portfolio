@@ -298,14 +298,6 @@ button {
   margin-bottom: 0;
 }
 
-/* Text that carries the accent gradient */
-.gradient-text {
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* ==========================================================================
    Buttons
    ========================================================================== */
@@ -372,20 +364,26 @@ button {
    Chips / tags
    ========================================================================== */
 
+/* Technologies read as a line of text, not a row of capsules. Chips turned
+   every section into the same wall of outlined pills and pushed the actual
+   writing down the card; as running text they stay scannable and recede. */
+/* Each entry is its own flex item rather than a run of inline text. The "/"
+   separators carry no surrounding whitespace, so as pure inline content the
+   whole list became one unbreakable token and overflowed its card; flex gives
+   every entry a real wrap opportunity. */
 .tag {
   display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-pill);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text-dim);
+  align-items: baseline;
   font-family: var(--font-mono);
-  font-size: var(--step-xs);
-  font-weight: 500;
-  line-height: 1.5;
-  user-select: none;
-  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  font-size: var(--step-sm);
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.tag + .tag::before {
+  content: "/";
+  margin: 0 0.5rem;
+  color: var(--border-strong);
 }
 
 /* ==========================================================================

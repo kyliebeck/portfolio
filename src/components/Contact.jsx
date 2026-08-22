@@ -38,14 +38,13 @@ export default function Contact() {
           <div className="contact__copy">
             <p className="eyebrow">Get in touch</p>
             <h2 className="contact__title">
-              Let&rsquo;s build
+              Looking for my next
               <br />
-              <span className="gradient-text">something together.</span>
+              full-stack role.
             </h2>
             <p className="contact__lead">
-              I&rsquo;m currently open to full-stack engineering roles. If you
-              think I&rsquo;d be a good fit for your team, I&rsquo;d love to
-              hear from you.
+              If you&rsquo;re hiring and something here looks like a fit, email
+              me. I read everything and I answer quickly.
             </p>
 
             <div className="contact__actions">

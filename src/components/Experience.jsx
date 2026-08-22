@@ -26,7 +26,7 @@ const experiences = [
         company: "Lashon Academy",
         period: "Sep 2022 — Oct 2023",
         description:
-            "Directed a classroom focused on core academic subjects with an emphasis on personalized learning, data-driven instruction, and collaborative problem-solving. I approached teaching the way I now approach coding — with curiosity, empathy, and a focus on continuous improvement. Integrating digital learning tools into the daily curriculum sparked my transition into tech.",
+            "Directed a classroom focused on core academic subjects with an emphasis on personalized learning, data-driven instruction, and collaborative problem-solving. I approached teaching the way I now approach coding, with curiosity, empathy, and a focus on continuous improvement. Integrating digital learning tools into the daily curriculum sparked my transition into tech.",
     },
     {
         role: "Preschool Teacher",
@@ -42,7 +42,6 @@ export default function Experience() {
         <section className="section section--ruled" id="experience">
             <div className="section__inner">
                 <header className="section-head" data-reveal>
-                    <p className="eyebrow">Career</p>
                     <h2 className="section-title">Where I&rsquo;ve been</h2>
                     <p className="section-intro">
                         Eight years teaching before I wrote my first line of production

@@ -81,14 +81,12 @@
 }
 
 .timeline__badge {
-    padding: 0.15rem 0.6rem;
-    border-radius: var(--radius-pill);
-    background: var(--success-soft);
-    border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
     color: var(--success);
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .timeline__role {
@@ -113,6 +111,7 @@
 .timeline__tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    align-items: baseline;
+    row-gap: 0.2rem;
     margin-top: 1.25rem;
 }

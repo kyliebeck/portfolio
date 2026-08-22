@@ -29,18 +29,16 @@ export default function Hero() {
           </p>
 
           <h1 className="hero__title" data-reveal style={{ "--reveal-delay": "70ms" }}>
-            Full-stack developer
+            Full-stack developer.
             <br />
-            who builds things
-            <br />
-            <span className="gradient-text">people actually use.</span>
+            Eight years a teacher first.
           </h1>
 
           <p className="hero__lead" data-reveal style={{ "--reveal-delay": "140ms" }}>
-            I&rsquo;m Kylie — a developer in Los Angeles building scalable web
-            applications and intuitive interfaces. I came to engineering from the
-            classroom, so I care as much about the person using the software as
-            the code underneath it.
+            I&rsquo;m Kylie, a developer in Los Angeles. I build web applications
+            end to end: the data model, the API, the interface, and the deploy.
+            Teaching taught me to watch someone struggle with something I made and
+            fix the thing rather than explain it harder.
           </p>
 
           <div className="hero__actions" data-reveal style={{ "--reveal-delay": "210ms" }}>
@@ -80,28 +78,6 @@ export default function Hero() {
           </ul>
         </div>
 
-        {/* Decorative — the same facts appear in prose above, so it's hidden from AT.
-            The reveal lives on the wrapper so its transform doesn't fight the card's tilt. */}
-        <div className="hero__card-wrap" data-reveal style={{ "--reveal-delay": "180ms" }} aria-hidden="true">
-          <div className="hero__card">
-            <div className="hero__card-bar">
-              <span /><span /><span />
-              <p>kylie.js</p>
-            </div>
-            <pre className="hero__code">
-              <code>
-                <span className="c-key">const</span> <span className="c-var">kylie</span> = {"{"}
-                {"\n"}  role: <span className="c-str">"Full-Stack Developer"</span>,
-                {"\n"}  location: <span className="c-str">"Los Angeles, CA"</span>,
-                {"\n"}  stack: [<span className="c-str">"React"</span>, <span className="c-str">"Node"</span>, <span className="c-str">"Postgres"</span>],
-                {"\n"}  previously: <span className="c-str">"Teacher"</span>,
-                {"\n"}  <span className="c-fn">shipping</span>: () <span className="c-key">=&gt;</span> <span className="c-bool">true</span>,
-                {"\n"}
-                {"}"};
-              </code>
-            </pre>
-          </div>
-        </div>
       </div>
 
       <a className="hero__scroll" href="#projects" aria-label="Scroll to projects">

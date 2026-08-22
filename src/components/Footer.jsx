@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
 
         <p className="footer__note">
-          Designed &amp; built with React and a lot of coffee ·{" "}
+          Built with React, Vite, and hand-written CSS ·{" "}
           {new Date().getFullYear()}
         </p>
 
