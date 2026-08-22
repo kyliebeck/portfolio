@@ -54,11 +54,11 @@ const categories = [
         skills: ["Git", "GitHub", "Vite", "REST APIs"],
     },
     {
-        title: "AI Integration",
+        title: "AI-Assisted Development",
         icon: "sparkle",
         skills: [
-            "Anthropic API", "OpenAI API", "Tool use / function calling",
-            "Streaming responses", "Structured output",
+            "Claude Code", "GitHub Copilot", "Spec-first prompting",
+            "Reviewing generated code", "Rapid prototyping", "AI-assisted debugging",
         ],
     },
 ];
