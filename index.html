@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#07080c" />
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fafafc" media="(prefers-color-scheme: light)" />
   <meta name="description"
     content="Kylie Beck — full-stack developer in Los Angeles building scalable web applications and intuitive user interfaces." />
 
@@ -32,6 +33,45 @@
   <meta name="twitter:description"
     content="Full-stack developer in Los Angeles building scalable web applications and intuitive user interfaces." />
   <meta name="twitter:image" content="https://portfolio-kylie.up.railway.app/og-image.png" />
+
+  <!-- Structured data: lets Google show the knowledge-panel style result when
+       someone searches the name, and gives recruiters' tooling something
+       machine-readable. Keep sameAs in sync with the links in Contact.jsx. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kylie Beck",
+      "jobTitle": "Full-Stack Software Engineer",
+      "url": "https://portfolio-kylie.up.railway.app/",
+      "image": "https://portfolio-kylie.up.railway.app/og-image.png",
+      "email": "mailto:kylie.beck12@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://github.com/kyliebeck",
+        "https://www.linkedin.com/in/kylie-beck-b14064197/"
+      ],
+      "knowsAbout": [
+        "JavaScript", "TypeScript", "React", "Node.js", "Express",
+        "Python", "Django", "PostgreSQL", "MongoDB", "REST APIs"
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "General Assembly"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Southern California"
+        }
+      ]
+    }
+  </script>
 
   <!-- Set the theme before first paint so there is no light-mode flash -->
   <script>
