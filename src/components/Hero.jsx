@@ -29,16 +29,16 @@ export default function Hero() {
           </p>
 
           <h1 className="hero__title" data-reveal style={{ "--reveal-delay": "70ms" }}>
-            Full-stack developer.
-            <br />
-            Eight years a teacher first.
+            Full-stack developer
+            <br />backed with eight
+            <br />years of teaching.
           </h1>
 
           <p className="hero__lead" data-reveal style={{ "--reveal-delay": "140ms" }}>
             I&rsquo;m Kylie, a developer in Los Angeles. I build web applications
-            end to end: the data model, the API, the interface, and the deploy.
-            Teaching taught me to watch someone struggle with something I made and
-            fix the thing rather than explain it harder.
+            end to end &mdash; data model, API, interface, and deploy. Teaching
+            taught me that when someone struggles with something I made, the
+            answer is to fix it, not to explain it louder.
           </p>
 
           <div className="hero__actions" data-reveal style={{ "--reveal-delay": "210ms" }}>
