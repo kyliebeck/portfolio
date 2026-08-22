@@ -38,7 +38,7 @@ export default function Hero() {
 
           <p className="hero__lead" data-reveal style={{ "--reveal-delay": "140ms" }}>
             I&rsquo;m Kylie, a developer in Los Angeles. I build web applications
-            end to end &mdash; data model, API, interface, and deploy. I spent
+            end to end: data model, API, interface, and deployment. I spent
             eight years teaching before this. Same instinct, different medium:
             make the hard thing make sense.
           </p>
