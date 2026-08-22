@@ -32,8 +32,7 @@ export default function Hero() {
             Full-stack developer,
             <br />
             backed by eight years
-            <br />
-            of teaching.
+            .
           </h1>
 
           <p className="hero__lead" data-reveal style={{ "--reveal-delay": "140ms" }}>
