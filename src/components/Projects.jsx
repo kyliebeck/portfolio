@@ -47,8 +47,10 @@ const projects = [
     title: "Sudoku",
     short: "Classic 9×9 Sudoku puzzle game.",
     description:
-      "Fill a 9×9 grid with the numbers 1–9 so no row, column, or 3×3 subsquare repeats a value, with live validation and a win state. Built from scratch with no framework.",
-    technologies: ["JavaScript", "CSS", "HTML"],
+      "Every puzzle is generated fresh at page load rather than pulled from a fixed list. Pick a number from the pad, click a cell, and the placement is checked against the solution: right answers lock in, wrong ones cost a strike, and three strikes ends the run. Easy, Medium, and Hard change how many starting clues you get, laid out in rotationally symmetric patterns. Around that sits a timer with personal bests per difficulty, auto-save so closing the tab doesn't lose the game, highlighting of every occurrence of the selected number, and pad numbers that grey out once all nine are placed.",
+    build:
+      "Vanilla JavaScript, HTML, and CSS — no framework, no dependencies, no build step. Puzzle generation is pure and DOM-free: randomized backtracking fills a complete grid, then clues are carved out one at a time with a uniqueness check after each removal, so every puzzle has exactly one solution. The solver branches on the most-constrained cell, which keeps generation around 30ms even on Hard. Layout is CSS Grid with grid-template-areas, custom properties, and clamp() sizing, down to a single-column phone layout in one media query. Cells are real buttons under role=\"grid\" with a roving tabindex and an aria-live banner naming each move, and saved games are validated as untrusted input before they're restored. 88 tests run in a real browser against the shipped page through a hand-rolled runner, driven headless in GitHub Actions and hosted alongside the game on GitHub Pages.",
+    technologies: ["JavaScript", "HTML", "CSS", "GitHub Actions", "GitHub Pages"],
     github: "https://github.com/kyliebeck/Sudoku-Project.git",
     demo: "https://kyliebeck.github.io/Sudoku-Project/",
     image: "/images/sudoku.webp",
