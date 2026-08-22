@@ -68,19 +68,18 @@ describe("Projects", () => {
     expect(unique.size).toBe(names.length);
   });
 
-  it("shows the build notes only for projects that have them", () => {
-    render(<Projects />);
+  it("shows the build notes on every project that has them", () => {
+    const { container } = render(<Projects />);
 
     const cards = screen.getAllByRole("article");
-    const sudoku = cards.find((card) =>
-      within(card).queryByRole("heading", { name: "Sudoku" })
-    );
-    const marquee = cards.find((card) =>
-      within(card).queryByRole("heading", { name: "Marquee" })
-    );
+    for (const card of cards) {
+      expect(within(card).getByText(/How it/)).toBeInTheDocument();
+    }
 
-    expect(within(marquee).getByText(/How it/)).toBeInTheDocument();
-    expect(within(sudoku).queryByText(/How it/)).not.toBeInTheDocument();
+    // The label and the text are rendered together, so one block per card.
+    expect(container.querySelectorAll(".project__build")).toHaveLength(
+      cards.length
+    );
   });
 
   it("applies the zoom crop only to the project that opts in", () => {

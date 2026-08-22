@@ -64,18 +64,21 @@
     }
 }
 
+/* Three lines at hero size need a little more room than the old two-line
+   headline did — 1.02 packed them close enough to read as one block. */
 .hero__title {
     font-size: var(--step-hero);
     letter-spacing: -0.035em;
-    line-height: 1.02;
-    margin-bottom: 1.5rem;
+    line-height: 1.08;
+    margin-bottom: 1.75rem;
 }
 
 .hero__lead {
     font-size: var(--step-lead);
+    line-height: 1.65;
     color: var(--text-dim);
-    max-width: 48ch;
-    margin-bottom: 2.25rem;
+    max-width: 52ch;
+    margin-bottom: 2.5rem;
 }
 
 .hero__actions {
